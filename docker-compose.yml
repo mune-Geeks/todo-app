@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  api:
+    build: ./backend
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+      - m2-cache:/root/.m2
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    ports:
+      - "8081:8080"
+      - "5006:5005"
+
+volumes:
+  m2-cache:
