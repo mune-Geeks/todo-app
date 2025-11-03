@@ -26,8 +26,20 @@ public class TodoAppApplication {
 
 			// readStudent(studentDAO);
 
-			queryForStudents(studentDAO);
+			// queryForStudents(studentDAO);
+
+			queryForStudentsByLastName(studentDAO);
 		};
+	}
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+		// get a list of students
+		List<Student> theStudents = studentDAO.findByLastName("Doe");
+
+		// display the students
+		for (Student tempStudent : theStudents) {
+			System.out.println(tempStudent);
+		}
 	}
 
 	private void queryForStudents(StudentDAO studentDAO) {
