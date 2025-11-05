@@ -27,7 +27,16 @@ public class TodoAppApplication {
 			// readStudent(studentDAO);
 
 			// queryForStudents(studentDAO);
+
+			deleteAllStudents(studentDAO);
 		};
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		
+		System.out.println("Deleting all students...");
+		int numRowsDeleted = studentDAO.deleteAll();
+		System.out.println("Deleted rows count: " + numRowsDeleted);
 	}
 
 	private void queryForStudents(StudentDAO studentDAO) {
