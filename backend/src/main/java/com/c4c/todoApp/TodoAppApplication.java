@@ -26,28 +26,25 @@ public class TodoAppApplication {
 
 			// readStudent(studentDAO);
 
-			// queryForStudents(studentDAO);
-
-			deleteAllStudents(studentDAO);
+			updateStudent(studentDAO);
 		};
 	}
 
-	private void deleteAllStudents(StudentDAO studentDAO) {
-		
-		System.out.println("Deleting all students...");
-		int numRowsDeleted = studentDAO.deleteAll();
-		System.out.println("Deleted rows count: " + numRowsDeleted);
-	}
+	private void updateStudent(StudentDAO studentDAO) {
+		// retrieve student based on the id
+		int studentId = 1;
+		System.out.println("Getting student with id: " + studentId);
+		Student myStudent = studentDAO.findById(studentId);
 
-	private void queryForStudents(StudentDAO studentDAO) {
-		
-		// get a list of students
-		List<Student> theStudents = studentDAO.findAll();
+		// change first name to "Scooby"
+		System.out.println("Updating student...");
+		myStudent.setFirstName("John");
 
-		// display the students
-		for (Student tempStudent : theStudents) {
-			System.out.println(tempStudent);
-		}
+		// update the student
+		studentDAO.update(myStudent);
+
+		// display the updated student
+		System.out.println("Updated student: " + myStudent);
 	}
 
 	private void readStudent(StudentDAO studentDAO) {
