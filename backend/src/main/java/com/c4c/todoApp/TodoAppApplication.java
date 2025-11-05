@@ -1,5 +1,7 @@
 package com.c4c.todoApp;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,15 +26,19 @@ public class TodoAppApplication {
 
 			// readStudent(studentDAO);
 
-			deleteStudent(studentDAO);
+			queryForStudents(studentDAO);
 		};
-	}
+	}　
 
-	private void deleteStudent(StudentDAO studentDAO) {
+	private void queryForStudents(StudentDAO studentDAO) {
 		
-		int studentId = 3;
-		System.out.println("Deleting student id: " + studentId);
-		studentDAO.delete(studentId);
+		// get a list of students
+		List<Student> theStudents = studentDAO.findAll();
+
+		// display the students
+		for (Student tempStudent : theStudents) {
+			System.out.println(tempStudent);
+		}
 	}
 
 	private void readStudent(StudentDAO studentDAO) {
