@@ -35,16 +35,36 @@ public class TodoAppApplication {
 		int studentId = 1;
 		System.out.println("Getting student with id: " + studentId);
 		Student myStudent = studentDAO.findById(studentId);
+			// queryForStudents(studentDAO);
 
-		// change first name to "Scooby"
-		System.out.println("Updating student...");
-		myStudent.setFirstName("John");
+			queryForStudentsByLastName(studentDAO);
+		};
+	}
 
-		// update the student
-		studentDAO.update(myStudent);
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+		// get a list of students
+		List<Student> theStudents = studentDAO.findByLastName("Doe");
 
-		// display the updated student
-		System.out.println("Updated student: " + myStudent);
+		// display the students
+		for (Student tempStudent : theStudents) {
+			System.out.println(tempStudent);
+		}
+	}
+
+	private void queryForStudents(StudentDAO studentDAO) {
+		
+		// // get a list of students
+		// List<Student> theStudents = studentDAO.findAll();
+
+		// // change first name to "Scooby"
+		// System.out.println("Updating student...");
+		// myStudent.setFirstName("John");
+
+		// // update the student
+		// studentDAO.update(myStudent);
+
+		// // display the updated student
+		// System.out.println("Updated student: " + myStudent);
 	}
 
 	private void readStudent(StudentDAO studentDAO) {
@@ -96,4 +116,5 @@ public class TodoAppApplication {
 		// display id of the saved student
 		System.out.println("Saved student. Generated id: " + tempStudent.getId());
 	}
+
 }
