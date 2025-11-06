@@ -38,7 +38,6 @@ public class TodoAppApplication {
 			// queryForStudents(studentDAO);
 
 			queryForStudentsByLastName(studentDAO);
-		};
 	}
 
 	private void queryForStudentsByLastName(StudentDAO studentDAO) {
