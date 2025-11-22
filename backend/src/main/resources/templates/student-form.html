@@ -8,21 +8,31 @@
 
 <body>
 
-<h3>Student Registration Form</h3>
+    <h3>Student Registration Form</h3>
 
-<form th:action="@{/processStudentForm}" th:object="${student}" method="POST">
+    <form th:action="@{/processStudentForm}" th:object="${student}" method="POST">
 
-    First Name: <input type="text" th:field="*{firstName}" />
+        First Name: <input type="text" th:field="*{firstName}" />
 
-    <br/><br/>
+        <br /><br />
 
-    Last Name: <input type="text" th:field="*{lastName}" />
+        Last Name: <input type="text" th:field="*{lastName}" />
 
-    <br/><br/>
+        <br /><br />
 
-    <input type="submit" value="Submit" />
+        Country:
+        <select th:field="*{country}">
+            <option value="Brazil">Brazil</option>
+            <option value="France">France</option>
+            <option value="Germany">Germany</option>
+            <option value="India">India</option>
+        </select>
 
-</form>
+        <br /><br />
+
+        <input type="submit" value="Submit" />
+
+    </form>
 </body>
 
 </html>
