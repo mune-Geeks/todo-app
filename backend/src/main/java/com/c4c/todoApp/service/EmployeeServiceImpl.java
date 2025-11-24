@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 import com.c4c.todoApp.dao.EmployeeRepository;
 import com.c4c.todoApp.entity.Employee;
 
-
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-
 
     private EmployeeRepository employeeRepository;
 
@@ -23,7 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findAll() {
-        return employeeRepository.findAll();
+        return employeeRepository.findAllByOrderByLastNameAsc();
     }
 
     @Override
