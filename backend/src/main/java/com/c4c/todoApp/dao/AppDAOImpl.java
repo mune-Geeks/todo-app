@@ -1,12 +1,14 @@
 package com.c4c.todoApp.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.c4c.todoApp.entity.Instructor;
 
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 
+@Repository
 public class AppDAOImpl implements AppDAO {
 
     // define field for entity manager
