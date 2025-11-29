@@ -26,12 +26,22 @@ public class TodoAppApplication {
 
 	private void createInstructor(AppDAO appDAO) {
 
+		/*
+		 * // create the instructor
+		 * Instructor tempInstructor = new Instructor("Chad", "Darby",
+		 * "darby@luv2code.com");
+		 * 
+		 * // create the instructorDetail
+		 * InstructorDetail tempInstructorDetail = new InstructorDetail(
+		 * "http://www.luv2code.com/youtube", "Luv 2 Code!");
+		 */
+
 		// create the instructor
-		Instructor tempInstructor = new Instructor("Chad", "Darby", "darby@luv2code.com");
+		Instructor tempInstructor = new Instructor("Madhu", "Patel", "madhu@luv2code.com");
 
 		// create the instructorDetail
 		InstructorDetail tempInstructorDetail = new InstructorDetail(
-				"http://www.luv2code.com/youtube", "Luv 2 Code!");
+				"http://www.luv2code.com/youtube", "Guitar");
 
 		// associate the objects
 		tempInstructor.setInstructorDetail(tempInstructorDetail);
