@@ -1,10 +1,12 @@
 package com.c4c.todoApp.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,6 +35,10 @@ public class InstructorDetail {
 
     @Column(name = "hobby")
     private String hobby;
+
+    // add @OneToOne mapping
+    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    private Instructor instructor;
 
     public InstructorDetail() {
 
@@ -70,6 +76,14 @@ public class InstructorDetail {
     @Override
     public String toString() {
         return "InstructorDetail [id=" + id + ", youtubeChannel=" + youtubeChannel + ", hobby=" + hobby + "]";
+    }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
 
 }

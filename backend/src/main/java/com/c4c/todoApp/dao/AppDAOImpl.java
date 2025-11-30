@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.c4c.todoApp.entity.Instructor;
+import com.c4c.todoApp.entity.InstructorDetail;
 
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -40,6 +41,11 @@ public class AppDAOImpl implements AppDAO {
 
         // delete the instructor
         entityManager.remove(tempInstructor);
+    }
+
+    @Override
+    public InstructorDetail findInstructorDetailById(int theId) {
+        return entityManager.find(InstructorDetail.class, theId);
     }
 
 }
