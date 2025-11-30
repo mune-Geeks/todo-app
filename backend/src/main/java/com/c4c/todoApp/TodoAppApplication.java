@@ -20,8 +20,18 @@ public class TodoAppApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 
 		return runner -> {
-			createInstructor(appDAO);
+			// createInstructor(appDAO);
+
+			findInstructorById(appDAO);
 		};
+	}
+
+	private void findInstructorById(AppDAO appDAO) {
+		int theId = 2;
+		System.out.println("Finding instructor id: " + theId);
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+		System.out.println("Found instructor: " + tempInstructor);
+		System.out.println("The associated instructorDetail: " + tempInstructor.getInstructorDetail());
 	}
 
 	private void createInstructor(AppDAO appDAO) {
