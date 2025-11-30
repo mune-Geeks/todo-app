@@ -22,8 +22,19 @@ public class TodoAppApplication {
 		return runner -> {
 			// createInstructor(appDAO);
 
-			findInstructorById(appDAO);
+			// findInstructorById(appDAO);
+
+			deleteInstructor(appDAO);
 		};
+	}
+
+	private void deleteInstructor(AppDAO appDAO) {
+
+		int theId = 1;
+		System.out.println("Deleting instructor id: " + theId);
+
+		appDAO.deleteInstructorById(theId);
+		System.out.println("Deleted instructor id: " + theId);
 	}
 
 	private void findInstructorById(AppDAO appDAO) {
