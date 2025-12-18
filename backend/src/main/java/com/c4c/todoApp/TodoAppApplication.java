@@ -1,11 +1,14 @@
 package com.c4c.todoApp;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.c4c.todoApp.dao.AppDAO;
+import com.c4c.todoApp.entity.Course;
 import com.c4c.todoApp.entity.Instructor;
 import com.c4c.todoApp.entity.InstructorDetail;
 
@@ -28,8 +31,73 @@ public class TodoAppApplication {
 
 			// findInstructorDetailById(appDAO);
 
-			deleteInstructorDetailById(appDAO);
+			// deleteInstructorDetailById(appDAO);
+
+			// createInstructorWithCourses(appDAO);
+
+			// findInstructorWithCourses(appDAO);
+
+			findCoursesForInstructor(appDAO);
 		};
+	}
+
+	private void findCoursesForInstructor(AppDAO appDAO) {
+		int theId = 1;
+		System.out.println("Finding instructor id: " + theId);
+
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+		System.out.println("tempInstructor: " + tempInstructor);
+
+		// find courses for instructor
+		System.out.println("Finding courses for instructor id: " + theId);
+		List<Course> courses = appDAO.findCoursesByInstructorId(theId);
+
+		// associate the objects
+		tempInstructor.setCourses(courses);
+
+		System.out.println("The associated courses: " + tempInstructor.getCourses());
+
+		System.out.println("Done!");
+	}
+
+	private void findInstructorWithCourses(AppDAO appDAO) {
+		int theId = 1;
+		System.out.println("Finding instructor id: " + theId);
+
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+		System.out.println("tempInstructor: " + tempInstructor);
+		System.out.println("The associated courses: " + tempInstructor.getCourses());
+
+		System.out.println("Done!");
+	}
+
+	private void createInstructorWithCourses(AppDAO appDAO) {
+
+		Instructor tempInstructor = new Instructor("Susan", "Public", "susan.public@luv2code.com");
+
+		InstructorDetail tempInstructorDetail = new InstructorDetail(
+				"http://www.youtube.com", "video games");
+
+		tempInstructor.setInstructorDetail(tempInstructorDetail);
+
+		// create some course
+		Course tempCourse1 = new Course("Air Guitar - The Ultimate Guide");
+		Course tempCourse2 = new Course("The Pinball Master");
+
+		// add courses to instructor
+		tempInstructor.add(tempCourse1);
+		tempInstructor.add(tempCourse2);
+
+		// save the instructor
+		// NOTE: this will also save the courses
+		// because of CascadeType.PERSIST
+		System.out.println("Saving the instructor: " + tempInstructor);
+
+		appDAO.save(tempInstructor);
+
+		System.out.println("Done!");
 	}
 
 	private void deleteInstructorDetailById(AppDAO appDAO) {

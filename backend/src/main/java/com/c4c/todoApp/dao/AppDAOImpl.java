@@ -1,12 +1,16 @@
 package com.c4c.todoApp.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.c4c.todoApp.entity.Course;
 import com.c4c.todoApp.entity.Instructor;
 import com.c4c.todoApp.entity.InstructorDetail;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -62,6 +66,20 @@ public class AppDAOImpl implements AppDAO {
 
         // delete the instructor detail
         entityManager.remove(tempInstructorDetail);
+    }
+
+    @Override
+    public List<Course> findCoursesByInstructorId(int theId) {
+
+        // create query
+        TypedQuery<Course> query = entityManager.createQuery("from Course where instructor.id = :data", Course.class);
+        query.setParameter("data", theId);
+
+        // execute query
+        List<Course> courses = query.getResultList();
+
+        // return the results
+        return courses;
     }
 
 }
