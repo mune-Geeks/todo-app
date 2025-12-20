@@ -23,31 +23,7 @@ public class TodoAppApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 
 		return runner -> {
-			// createInstructor(appDAO);
 
-			// findInstructorById(appDAO);
-
-			// deleteInstructor(appDAO);
-
-			// findInstructorDetailById(appDAO);
-
-			// deleteInstructorDetailById(appDAO);
-
-			// createInstructorWithCourses(appDAO);
-
-			// findInstructorWithCourses(appDAO);
-
-			// findCoursesForInstructor(appDAO);
-
-			// findInstructorWithCoursesJoinFetch(appDAO);
-
-			// updateInstructor(appDAO);
-
-			// updateCourse(appDAO);
-
-			// deleteInstructor(appDAO);
-
-			deleteCourseById(appDAO);
 		};
 	}
 
