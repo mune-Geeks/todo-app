@@ -11,6 +11,7 @@ import com.c4c.todoApp.dao.AppDAO;
 import com.c4c.todoApp.entity.Course;
 import com.c4c.todoApp.entity.Instructor;
 import com.c4c.todoApp.entity.InstructorDetail;
+import com.c4c.todoApp.entity.Review;
 
 @SpringBootApplication
 public class TodoAppApplication {
@@ -24,7 +25,29 @@ public class TodoAppApplication {
 
 		return runner -> {
 
+			createCourseAndReviews(appDAO);
 		};
+	}
+
+	private void createCourseAndReviews(AppDAO appDAO) {
+
+		// create a course
+		Course tempCourse = new Course("Pacman - How To Score High!");
+
+		// add some reviews
+		tempCourse.addReview(new Review("Great course!"));
+		tempCourse.addReview(new Review("Cool course!"));
+		tempCourse.addReview(new Review("what a dumb course, you are an idiot!"));
+
+		// save the course ... and leverage the cascade all
+		System.out.println("Saving the course");
+		System.out.println(tempCourse);
+		System.out.println("Associated reviews: " + tempCourse.getReviews());
+
+		appDAO.save(tempCourse);
+
+		System.out.println("Done!");
+
 	}
 
 	private void deleteCourseById(AppDAO appDAO) {
