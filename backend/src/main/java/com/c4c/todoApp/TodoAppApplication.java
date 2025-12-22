@@ -26,8 +26,21 @@ public class TodoAppApplication {
 
 		return runner -> {
 
-			createCourseAndStudent(appDAO);
+			// createCourseAndStudent(appDAO);
+
+			findCourseAndStudentsByCourseId(appDAO);
 		};
+	}
+
+	private void findCourseAndStudentsByCourseId(AppDAO appDAO) {
+
+		int theId = 10;
+		Course tempCourse = appDAO.findCourseAndStudentsByCourseId(theId);
+
+		System.out.println("Course: " + tempCourse);
+		System.out.println("Students: " + tempCourse.getStudents());
+
+		System.out.println("Done!");
 	}
 
 	private void createCourseAndStudent(AppDAO appDAO) {
