@@ -12,6 +12,7 @@ import com.c4c.todoApp.entity.Course;
 import com.c4c.todoApp.entity.Instructor;
 import com.c4c.todoApp.entity.InstructorDetail;
 import com.c4c.todoApp.entity.Review;
+import com.c4c.todoApp.entity.Student;
 
 @SpringBootApplication
 public class TodoAppApplication {
@@ -25,7 +26,30 @@ public class TodoAppApplication {
 
 		return runner -> {
 
+			createCourseAndStudent(appDAO);
 		};
+	}
+
+	private void createCourseAndStudent(AppDAO appDAO) {
+
+		// create a course
+		Course tempCourse = new Course("Pacman - How To Score High!");
+
+		// create the students
+		Student tempStudent1 = new Student("John", "Doe", "john.doe@gmail.com");
+		Student tempStudent2 = new Student("Mary", "Public", "mary.public@gmail.com");
+
+		// add students to the course
+		tempCourse.addStudent(tempStudent1);
+		tempCourse.addStudent(tempStudent2);
+
+		// save the course and associated students
+		System.out.println("Saving the course: " + tempCourse);
+		System.out.println("Associated students: " + tempCourse.getStudents());
+
+		appDAO.save(tempCourse);
+
+		System.out.println("Done!");
 	}
 
 	private void deleteCourseAndReviews(AppDAO appDAO) {

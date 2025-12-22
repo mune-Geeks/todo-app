@@ -1,10 +1,16 @@
 package com.c4c.todoApp.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +30,10 @@ public class Student {
 
     @Column(name = "email")
     private String email;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
+            CascadeType.DETACH }, mappedBy = "students")
+    private List<Course> courses;
 
     public Student() {
     }
@@ -71,4 +81,20 @@ public class Student {
         return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
     }
 
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    // add a convenience method
+    public void addCourse(Course theCourse) {
+        if (courses == null) {
+            courses = new ArrayList<>();
+        }
+        courses.add(theCourse);
+        theCourse.addStudent(this);
+    }
 }
