@@ -32,7 +32,9 @@ public class TodoAppApplication {
 
 			// findStudentAndCoursesById(appDAO);
 
-			addMoreCoursesForStudent(appDAO);
+			// addMoreCoursesForStudent(appDAO);
+
+			deleteCourseById(appDAO);
 		};
 	}
 
