@@ -5,6 +5,7 @@ import java.util.List;
 import com.c4c.todoApp.entity.Course;
 import com.c4c.todoApp.entity.Instructor;
 import com.c4c.todoApp.entity.InstructorDetail;
+import com.c4c.todoApp.entity.Student;
 
 public interface AppDAO {
 
@@ -35,4 +36,6 @@ public interface AppDAO {
     Course findCourseAndReviewsByCourseId(int theId);
 
     Course findCourseAndStudentsByCourseId(int theId);
+
+    Student findStudentAndCoursesById(int theId);
 }

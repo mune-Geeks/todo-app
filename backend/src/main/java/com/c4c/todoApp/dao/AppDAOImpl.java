@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.c4c.todoApp.entity.Course;
 import com.c4c.todoApp.entity.Instructor;
 import com.c4c.todoApp.entity.InstructorDetail;
+import com.c4c.todoApp.entity.Student;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -172,6 +173,22 @@ public class AppDAOImpl implements AppDAO {
 
         // return the result
         return course;
+    }
+
+    @Override
+    public Student findStudentAndCoursesById(int theId) {
+
+        // create query
+        TypedQuery<Student> query = entityManager
+                .createQuery("select s from Student s " + "JOIN FETCH s.courses " + "where s.id = :data",
+                        Student.class);
+
+        query.setParameter("data", theId);
+        // execute query
+        Student student = query.getSingleResult();
+
+        // return the result
+        return student;
     }
 
 }
