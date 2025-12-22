@@ -30,8 +30,33 @@ public class TodoAppApplication {
 
 			// findCourseAndStudentsByCourseId(appDAO);
 
-			findStudentAndCoursesById(appDAO);
+			// findStudentAndCoursesById(appDAO);
+
+			addMoreCoursesForStudent(appDAO);
 		};
+	}
+
+	private void addMoreCoursesForStudent(AppDAO appDAO) {
+
+		// get student
+		int theId = 2;
+		Student tempStudent = appDAO.findStudentAndCoursesById(theId);
+
+		// create more courses
+		Course tempCourse1 = new Course("Rubik's Cube - How To Score High!");
+		Course tempCourse2 = new Course("Atari 2600 - Game Development");
+
+		// add courses to student
+		tempStudent.addCourse(tempCourse1);
+		tempStudent.addCourse(tempCourse2);
+
+		System.out.println("Updating student: " + tempStudent);
+		System.out.println("Courses: " + tempStudent.getCourses());
+
+		// save the student
+		appDAO.update(tempStudent);
+
+		System.out.println("Done!");
 	}
 
 	private void findStudentAndCoursesById(AppDAO appDAO) {
