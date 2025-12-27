@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.c4c.todoApp.dao.AccountDAO;
+import com.c4c.todoApp.dao.MembershipDAO;
 
 @SpringBootApplication
 public class TodoAppApplication {
@@ -15,22 +16,20 @@ public class TodoAppApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO) {
+	public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
 		return args -> {
 
-			demoTheBeforeAdvice(theAccountDAO);
+			demoTheBeforeAdvice(theAccountDAO, theMembershipDAO);
+
 		};
 	}
 
-	private void demoTheBeforeAdvice(AccountDAO theAccountDAO) {
+	private void demoTheBeforeAdvice(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
 
 		// call the business method
 		theAccountDAO.addAccount();
 
-		// do it again!
-		System.out.println("¥n let`s call it again! ¥n");
-
-		// call the business method again
-		theAccountDAO.addAccount();
+		// call the membership business method
+		theMembershipDAO.addAccount();
 	}
 }
